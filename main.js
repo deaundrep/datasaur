@@ -1,12 +1,154 @@
+const makeDino = function(newSpecies, newPeriod, newCarnivore, extinct = false){
+  const dino = {
+    species: newSpecies,
+    period: newPeriod,
+    carnivore: newCarnivore,
+    extinct: extinct,
+  }
+  return dino
+}
 /********************
  * HELPER FUNCTIONS *
  ********************/
+const makeSingular = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  if (newDino.species.endsWith('us') === true) {
+    newDino.species = newDino.species.slice(0, -2);
+    }
 
+  return newDino;
+}
+
+const truncateSpecies = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  if (newDino.species.length > 10 ){
+    newDino.species = newDino.species.slice(0,7) + "..."
+  }
+
+  return newDino
+}
+
+const makeExtinct = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: true,
+  }
+
+  return newDino
+}
+
+const isCarnivore = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  
+  return newDino.carnivore
+}
+
+const isExtinct = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  
+  return newDino.extinct 
+}
+
+const isTriassic = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  
+  return newDino.period === 'Triassic'
+}
+
+const isJurassic = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  
+  return newDino.period === 'Jurassic'
+}
+
+const isCretaceous = function(dino){
+  const newDino = {
+    species: dino.species,
+    period: dino.period,
+    carnivore: dino.carnivore,
+    extinct: dino.extinct,
+  }
+  
+  return newDino.period === 'Cretaceous'
+}
 
 
 /***********************
  * ITERATION FUNCTIONS *
  **********************/
+const singularizeDinos = function(dinos){
+  return dinos.map(makeSingular)
+}
+
+const truncateDinos = function(dinos){
+  return dinos.map(truncateSpecies)
+}
+
+const makeAllExtinct = function(dinos){
+  return dinos.map(makeExtinct)
+}
+
+const carnivoresOnly = function(dinos){
+  return dinos.filter(isCarnivore)
+}
+
+const herbivoresOnly = function(dino){
+  return dino.filter(function(dino){
+    return dino.carnivore === false;
+  })
+}
+
+const extinctOnly = function(dinos){
+  return dinos.filter(isExtinct)
+}
+
+const notExtinct = function(dino){
+  return dino.filter(function(dino){
+    return dino.isExtinct === false;
+  })
+}
+
+const triassicOnly = function(dinos){
+  return dinos.filter(isTriassic)
+}
+
+const notTriassic = function(dino){
+  return dino.filter(function(dino){
+    return dino.isTriassic === false;
+  })
+}
 
 
 
